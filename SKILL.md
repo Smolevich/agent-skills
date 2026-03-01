@@ -42,6 +42,37 @@ The goal is to:
 
 Wait for answers before proceeding. These determine everything: length, structure, boldness of claims.
 
+### Pro Tip: Better Data = Better Results
+
+After gathering basic stats, suggest to the user:
+
+```
+For more personalized recommendations, you can provide:
+
+1. **Post Analytics Export** (best option)
+   LinkedIn → Analytics → Content → Export
+   This gives me your actual top-performing posts to learn from.
+
+2. **Full Data Export** (comprehensive)
+   LinkedIn → Settings → Data Privacy → Get a copy of your data
+   Select "Posts" and "Articles" — takes ~24h to generate.
+
+3. **Manual examples**
+   Share 2-3 of your best-performing posts (with impressions/engagement).
+   I'll analyze what worked and apply those patterns.
+
+Without this data, I'll give general recommendations.
+With this data, I can find YOUR winning patterns.
+```
+
+If user provides analytics data or post examples, analyze them first:
+- What hooks worked best?
+- What length got most engagement?
+- What topics resonated?
+- What tone/style is natural for them?
+
+Use these insights to tailor recommendations specifically to their audience.
+
 ## Step 2: Read the Draft
 
 Read the draft file provided in `$ARGUMENTS`.
