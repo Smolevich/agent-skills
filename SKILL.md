@@ -1,7 +1,13 @@
 ---
 name: linkedin-post-optimizer
-description: This skill should be used when users want to create or refine LinkedIn posts. It transforms raw ideas into authentic posts adapted to the user's profile level, voice, and audience, with built-in AI slop detection and engagement optimization.
-allowed-tools: Read, Glob, Grep, Write
+description: >
+  Transform raw ideas into authentic LinkedIn posts adapted to the user's profile
+  level, voice, and audience. Use this skill whenever the user mentions LinkedIn,
+  wants to write a post, draft content for social media, optimize engagement,
+  improve their professional presence, or asks about content strategy — even if
+  they don't explicitly say "LinkedIn post". Includes AI slop detection and
+  engagement optimization.
+allowed-tools: Read, Glob, Grep, Write, AskUserQuestion
 argument-hint: drafts/my-idea.md
 user-invocable: true
 ---
@@ -74,7 +80,7 @@ Generate the post in the requested language, but set realistic expectations.
 
 ## Step 3: Check Profile Context
 
-Read `.claude/skills/linkedin-post-optimizer/profile-context.md` if it exists. This file contains additional context about the user's brand, achievements, and content pillars. Use it to enrich recommendations, but Step 2 answers take priority.
+Read `profile-context.md` in the skill directory (or in the project root) if it exists. This file contains additional context about the user's brand, achievements, and content pillars. Use it to enrich recommendations, but Step 2 answers take priority.
 
 ### Hook Pattern Analysis
 

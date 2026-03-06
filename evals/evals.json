@@ -1,0 +1,29 @@
+{
+    "skill_name": "linkedin-post-optimizer",
+    "evals": [
+        {
+            "id": 1,
+            "prompt": "Хочу написать LinkedIn пост. Идея: Paperclip — это оркестратор над AI-агентами. Я запускаю через него Claude Code, Codex, Antigravity параллельно на разных задачах. Один делает фичу, второй пишет тесты, третий ревьюит. Как конвейер на заводе, только вместо рабочих — агенты.",
+            "expected_output": "Post in Russian. Must ask audience size/engagement/tone/language BEFORE writing. Hook should have a concrete anchor (factory conveyor metaphor or specific number of agents). Should suggest narrowing if too broad. 150-280 words depending on profile level. CTA about multi-agent workflows. No AI slop.",
+            "files": []
+        },
+        {
+            "id": 2,
+            "prompt": "I want a LinkedIn post about how Google's new gws CLI replaced my broken OAuth scripts for Calendar and Gmail. My AI agent used to break the script every week, now it just works with read-only access.",
+            "expected_output": "Post in English. Must gather LinkedIn stats first. Hook should use personal story + specific data point (weekly breakage → zero breakage). Should preserve the before/after contrast. Body mentions read-only as trust boundary. CTA question about giving AI agents access to personal data. No generic openers.",
+            "files": []
+        },
+        {
+            "id": 3,
+            "prompt": "Напиши пост для LinkedIn. Тема: я попробовал 5 AI-агентов за последний месяц и понял что ни один не идеален, каждый хорош в своём. Хочу сравнить их без хейта.",
+            "expected_output": "Must suggest NARROWING the topic — 5 tools is too broad, skill should ask 'What's the ONE thing that surprised you most?'. Post should NOT be a listicle of all 5 tools. Must follow toxic tone anti-pattern (critical but professional). If user insists on all 5, structure as a clear framework, not just a list.",
+            "files": []
+        },
+        {
+            "id": 4,
+            "prompt": "Write a post about switching from Cursor to a CLI-first AI coding workflow. I'm writing in English but my LinkedIn network is mostly Russian speakers.",
+            "expected_output": "Must detect language mismatch (EN post, RU network) and WARN the user about weak golden hour signal. Should suggest transition strategy (parallel posting, gradual shift, or network-first). Post generated in English but with realistic reach expectations. Hook follows EN LinkedIn pattern (personal story + data point).",
+            "files": []
+        }
+    ]
+}
