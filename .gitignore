@@ -1,6 +1,12 @@
 # User's personal profile context (contains private info)
 profile-context.md
 
+# Personal drafts
+drafts/
+
+# Agent-specific local config
+.claude/
+
 # OS files
 .DS_Store
 Thumbs.db
