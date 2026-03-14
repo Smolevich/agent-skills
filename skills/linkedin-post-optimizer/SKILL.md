@@ -131,6 +131,22 @@ Suggest only if the combination is genuinely stronger, not just bigger. The user
 - 200-280 words, complex structures allowed
 - Audience trusts the takes, can be more contrarian
 
+### Reach Archetypes
+
+When reach is the priority, help the user choose one of these two "engines":
+
+1.  **The Vulnerability Engine (Social Velocity)**
+    - **Draft signal:** Personal failure, mistakes, "I was wrong", real stats of personal struggle.
+    - **Algorithmic trigger:** High "Reaction" count and early "Emotional Comments".
+    - **Best for:** Fast reach boost, building trust, and "viral" spikes.
+    - **Success metrics:** High impressions/hour even without attachments.
+
+2.  **The Utility Engine (Dwell Time)**
+    - **Draft signal:** How-to, "I built X", "How I automate Y", listicles.
+    - **Algorithmic trigger:** High "Dwell Time" (PDF/Carousel) and "Saves".
+    - **Best for:** Long-tail reach, professional positioning, and high "Save" counts.
+    - **Success metrics:** High total impressions over 3-7 days.
+
 ## Step 6: Structure the Post
 
 Every post needs three parts:
@@ -240,22 +256,19 @@ Exit refine mode when the user approves or moves on.
 
 After the user approves the text (Step 10), perform a final "Reach Check" to maximize distribution:
 
-### 1. Niche Hashtags
-Suggest 3-5 specific, non-generic hashtags based on the content.
-- **Rule:** No #success, #motivation, #career.
-- **Goal:** Help the LinkedIn algorithm categorize the post (e.g., #engineeringmanagement, #obsstudio, #leadershipdevelopment).
+### 1. Dwell Time Booster (Carousels/Documents)
+If the goal is maximum reach (>5k impressions), suggest converting the post (or part of it) into a **PDF Document (Carousel)**.
+- **Why:** LinkedIn's 2025-2026 algorithm heavily prioritizes "Dwell Time". Documents force users to stay on the post longer, triggering a massive reach boost.
+- **Suggestion:** "This topic would work great as a 5-page PDF carousel. Want me to outline the slides?"
 
-### 2. CTA Opening Check
+### 2. Niche Hashtags (Discovery)
+Suggest 1-3 (max 3) niche hashtags. 
+- **Rule:** Use them only for **Topic Categorization** (#engineeringmanagement, #obsstudio), not for "magic reach".
+- **Why:** They help LinkedIn route the post to relevant interest groups but are secondary to engagement and dwell time.
+
+### 3. CTA Opening Check
 Analyze the closing question. If it's a binary "Yes/No" question (e.g., "Do you agree?"), suggest a more open-ended version that encourages longer comments.
 - **Example:** Instead of "Do you use AI?" -> "What's the most surprising result an AI tool gave you this week?"
-
-### 3. Tagging (Optional)
-If the user mentions a specific product or person constructively, suggest tagging them: "Tagging the creator/company can help start a direct dialogue."
-
-### 4. Golden Hour Tip
-Remind the user: "LinkedIn prioritizes posts with early engagement. Post during your network's active hours (usually 9-11 AM or 2-4 PM) and stay active to reply to the first comments."
-
-Exit skill mode once these final tips are provided.
 
 ### Data Collection Tips
 
