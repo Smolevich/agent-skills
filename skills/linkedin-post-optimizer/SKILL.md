@@ -156,8 +156,8 @@ Every post needs three parts:
 This is the only part visible in the feed before "...more". The reader decides in 1-2 seconds: expand or scroll.
 
 What makes someone stop:
+- A specific number in the first line (proven: every top post starts with a number)
 - A specific detail from experience
-- A number or fact
 - A question that resonates
 - A statement that challenges assumptions
 
@@ -166,6 +166,8 @@ NOT generic openers like "I've been thinking about...", "Here's what I learned..
 ### Body
 
 The actual insight, story, or information. Structured for easy scanning (short paragraphs, lists if needed). Length depends on profile level.
+
+**Links:** Never put URLs in the post body — LinkedIn deprioritizes posts with outbound links. Always suggest moving links to the first comment.
 
 ### Conclusion (1-2 lines)
 
@@ -256,10 +258,20 @@ Exit refine mode when the user approves or moves on.
 
 After the user approves the text (Step 10), perform a final "Reach Check" to maximize distribution:
 
-### 1. Dwell Time Booster (Carousels/Documents)
-If the goal is maximum reach (>5k impressions), suggest converting the post (or part of it) into a **PDF Document (Carousel)**.
-- **Why:** LinkedIn's 2025-2026 algorithm heavily prioritizes "Dwell Time". Documents force users to stay on the post longer, triggering a massive reach boost.
-- **Suggestion:** "This topic would work great as a 5-page PDF carousel. Want me to outline the slides?"
+### 1. Attachment Strategy: Screenshot vs Carousel
+
+Before suggesting a carousel, check the user's top-performing posts (if `data/top-posts-analysis.md` exists, read it).
+
+**Default recommendation: Single screenshot.**
+- Top-performing posts consistently use a single informative screenshot (terminal, dashboard, analytics).
+- A screenshot is lower friction to produce and doesn't risk the carousel dwell-time penalty on low-engagement posts.
+
+**When to suggest a carousel (PDF Document):**
+- The post is a **how-to with multiple steps** (install commands, before/after, tool comparison).
+- The user explicitly wants maximum dwell time.
+- The user already has carousel-ready content (slides, diagrams).
+
+**If user chooses carousel, follow the Carousel Rules (Step 12).**
 
 ### 2. Niche Hashtags (Discovery)
 Suggest 1-3 (max 3) niche hashtags. 
@@ -278,3 +290,97 @@ After delivering the post, suggest this only if the user seems engaged and has 3
 > 1. **Best posts** — paste 2-3 top performers with impression numbers
 > 2. **Post Analytics Export** — LinkedIn -> Analytics -> Content -> Export
 > 3. **Full LinkedIn Data Export** — LinkedIn -> Settings -> Data Privacy -> Get a copy of your data -> Select "Posts"
+
+## Step 12: Carousel Rules
+
+If the user wants a PDF carousel, follow these rules.
+
+### Structure
+
+1. **Slide 1 — Title.** One clear statement of what the reader will get. No generic taglines.
+2. **Slide 2 — Why / Proof.** Personal result with a specific number. Answer: "why should I keep reading?"
+3. **Slide 3 (optional) — Screenshot proof.** A real screenshot from Perplexity, ChatGPT, terminal, analytics — with key elements highlighted (red border). Visual proof > text claims.
+4. **Middle slides — Content.** One idea per slide. Use markdown lists (`-`), not unicode bullets (`•`). Keep text scannable — a reader spends 3-5 seconds per slide.
+5. **Second-to-last slide — Actionable step.** Install commands, links, or a concrete next action.
+6. **Last slide — Contacts.** Always include LinkedIn profile + Telegram/other channels. Match the format from previous carousels (see `drafts/` for examples).
+
+### Formatting for MarkText → PDF
+
+- Use `<div style="page-break-after: always;"></div>` between slides (not `---`).
+- Do NOT use `## Slide N:` labels — they render as visible headers in PDF.
+- Use `##` for slide titles, `-` for lists, ` ``` ` for code blocks.
+- Keep 6-8 slides total. More = lower completion rate.
+- Test on mobile — LinkedIn carousels are mostly viewed on phones. If a screenshot has small text, crop to the key area.
+
+### Content Rules
+
+- **No AI slop.** Same rules as posts: no buzzwords, no "10 синих ссылок", no "game-changer".
+- **Answer three questions:** WHY this tool/approach? WHAT does it do? HOW to set it up?
+- **No redundancy with the post.** The post sells the problem and result. The carousel gives technical details and installation. They don't repeat each other.
+- **Links go in the carousel, not the post.** Repository URLs, install commands — all in the carousel. Post stays clean for the algorithm.
+
+### Expert Review for Carousels
+
+When running expert review (Step 9), add this criterion:
+- **"Why?" check** — Does the carousel answer why THIS specific tool/approach and not alternatives? "I tested it and it worked" is not enough. Include: how many alternatives exist, what makes these complementary, what gap they fill.
+
+## Step 13: Learning the User's Style
+
+The skill gets better when it knows what already works for the user. Don't hardcode file paths — ask.
+
+### Gathering Post History
+
+If the user has **3+ published posts**, ask them to share top-performing posts with stats. One message:
+
+> "To write in your voice and hit your numbers, I need to see what already works. Can you share:
+> 1. **2-3 top posts by impressions** — the text + impressions count
+> 2. Or an **analytics export** from LinkedIn (Analytics → Content → Export)
+>
+> This helps me match your style, length, and hook patterns."
+
+If the user shares data, analyze it for:
+- **Hook patterns** — what opens the top posts? (numbers, stories, contrarian claims)
+- **Optimal length** — average word count of top performers
+- **Attachment type** — screenshots vs carousels vs text-only
+- **CTA style** — what kind of endings drive comments
+- **Topics** — what themes get the most reach
+
+Save these patterns in the project for future sessions.
+
+If the user has **0-2 posts** or doesn't want to share data, skip this step and focus on fundamentals: strong hook, clear body, actionable CTA.
+
+### Posting Strategy (for users who ask)
+
+**Frequency:**
+- No more than 2 posts per week. The algorithm needs time to understand your core topic and build distribution. Posting daily dilutes signal.
+- Space posts 3-4 days apart so they don't compete with each other.
+
+**Topic focus:**
+- Stick to maximum 2 related themes. LinkedIn's algorithm rewards topical consistency — it learns what your audience engages with and routes your posts to similar people.
+- Writing about completely unrelated topics simultaneously confuses the algorithm and splits your audience.
+
+**What gets reach:**
+People engage with posts that are either:
+1. **Useful** — solves a real problem, gives a tool, saves time
+2. **Provocative** — invites disagreement, challenges assumptions, starts a discussion
+
+Posts that are neither useful nor provocative get low reach regardless of length or formatting.
+
+### CTA Calibration
+
+Match the CTA to what the user is ready to deliver:
+- If the user **won't create bonus materials** (PDFs, templates) in exchange for comments — don't suggest "drop a comment and I'll send you X". It creates a promise they won't keep.
+- If the user **is active in comments** — suggest open-ended questions that spark discussion.
+- If the user **is a beginner** — a simple takeaway is fine. No engagement hacking.
+
+### Proven Patterns
+
+These rules come from analyzing real post performance:
+
+1. **Numbers in the first line — always.** Not "I spent time..." but "20k messages in 70 days", "$50/month", "9 interviews in 2 months".
+2. **Optimal length: 150-200 words.** Going over 200 is fine for Advanced profiles but should be justified.
+3. **Single screenshot > carousel** for pure reach. Carousels are better for dwell time but carry higher risk if engagement is low.
+4. **Links in the first comment, never in the post body.** LinkedIn deprioritizes posts with outbound links.
+5. **Personal data builds trust.** Real screenshots from dashboards, terminals, analytics — not stock images.
+6. **Open-ended CTA, not binary.** "How many agents do you use?" > "Do you use AI agents?"
+7. **Hashtags: max 3, topic-specific.** Use compound tags (#GEOSEO not #GEO). No generic tags (#technology, #innovation).
