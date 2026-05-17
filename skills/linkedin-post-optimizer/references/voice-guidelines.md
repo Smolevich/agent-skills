@@ -1,5 +1,7 @@
 # Voice Guidelines & AI Slop Detection
 
+> **Priority:** if `skills/linkedin-post-optimizer/style-profile.md` exists, it represents the user's measured voice and overrides everything below on conflict. The rules here are defaults for when no profile is calibrated yet.
+
 ## AI Language Patterns to Remove
 
 Before finalizing any post, check for and remove these tells:

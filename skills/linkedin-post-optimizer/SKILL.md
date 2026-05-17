@@ -8,7 +8,7 @@ description: >
   they don't explicitly say "LinkedIn post". Includes AI slop detection and
   engagement optimization.
 allowed-tools: Read, Glob, Grep, Write, AskUserQuestion
-argument-hint: drafts/my-idea.md
+argument-hint: drafts/my-idea.md  |  --calibrate  |  --calibrate style-samples/
 user-invocable: true
 ---
 
@@ -24,6 +24,116 @@ Core goals:
 
 For voice guidelines, AI slop detection rules, and anti-patterns, read `references/voice-guidelines.md`.
 For draft/output examples, read `references/examples.md`.
+
+## Step 0: Style Profile Loading & Calibration Mode
+
+### 0.1 Always Load Style Profile First
+
+At the start of every run, check for `skills/linkedin-post-optimizer/style-profile.md`.
+
+- **If it exists:** read it. It contains the user's measured voice patterns (sentence rhythm, openings, closings, signature words, punctuation habits, emoji policy, list format). These patterns **override** generic defaults in `voice-guidelines.md` for everything that follows.
+- **If it does not exist:** proceed with defaults but, after Step 2, offer once:
+  > "Я пишу в нейтральном LinkedIn-голосе. Если хотите, чтобы я писал именно в вашем — запустите меня с `--calibrate` и дайте 5–15 ваших текстов (можно из Telegram). Один раз настроим — дальше каждый пост уже в вашей подаче."
+
+### 0.2 Calibration Mode — Trigger
+
+Enter calibration mode if ANY of:
+- `$ARGUMENTS` contains `--calibrate`
+- User message contains: "обучи на моих текстах", "запомни мой стиль", "calibrate", "learn my style", "настрой голос", "откалибруй стиль"
+- `$ARGUMENTS` points to a directory (e.g., `style-samples/`) — auto-treat as calibration input
+
+In calibration mode, **do not write a post**. The only output is the style profile.
+
+### 0.3 Calibration Mode — Collect Samples
+
+Ask the user once (using AskUserQuestion or directly):
+
+> "Дайте 5–15 ваших текстов — любых, где ваш голос настоящий. Подойдут:
+> - посты из Telegram-канала / личные сообщения / голосовые расшифровки
+> - старые LinkedIn-посты (не обязательно лучшие — нужны характерные)
+> - комментарии, заметки, что угодно где вы пишете «как есть»
+>
+> Варианты как передать:
+> 1. Вставить прямо в чат (можно одним сообщением, разделяя `---`)
+> 2. Положить файлы в `style-samples/` и сказать «готово»
+> 3. Указать путь к файлу/папке"
+
+Wait for input. If fewer than 5 samples — push back: «5 — это минимум. На 2-3 текстах паттерны не считываются, получится случайный шум.»
+
+### 0.4 Calibration Mode — Analyze on Fixed Axes
+
+Analyze samples on these axes. For each, write a **concrete observation with example**, not a generic label.
+
+1. **Sentence rhythm** — average length, ratio of short (under 8 words) to long (over 20). Does the user mix short punchy sentences with long ones, or stay uniform?
+2. **Opening moves** — how the user starts a thought / paragraph / post. Quote 3 actual openings.
+3. **Closing moves** — how the user lands a thought. Open question? Statement? Punchline? Quote 3 actual endings.
+4. **Signature vocabulary** — words/phrases that repeat across samples and feel "his" (not generic). List 8–15.
+5. **Punctuation tics** — em-dashes, ellipses, parenthetical asides, colons before payoffs, line breaks for emphasis. Quote examples.
+6. **List format** — markdown `-`, numbered, prose lists, none. Frequency.
+7. **Emoji policy** — never / rare-and-specific / regular. If used, which ones.
+8. **Profanity / slang / code-switching** — does the user mix RU/EN inline? Use slang? Tech jargon? Quote.
+9. **Tone register** — formal, casual, technical, narrative. Where does it shift?
+10. **What he NEVER does** — patterns conspicuously absent (no headers in posts? no hashtags? no "Let's dive in"?). These are anti-patterns to enforce.
+
+### 0.5 Calibration Mode — Write the Profile
+
+Write to `skills/linkedin-post-optimizer/style-profile.md` using this structure:
+
+```markdown
+# Style Profile — [User Name or "User"]
+
+> Generated from N samples on YYYY-MM-DD. Replace by re-running `--calibrate`.
+
+## Sentence Rhythm
+[observation + concrete example]
+
+## How He Opens
+[3 quoted openings + pattern]
+
+## How He Closes
+[3 quoted closings + pattern]
+
+## Signature Vocabulary
+- word/phrase 1 — context where it appears
+- word/phrase 2 — ...
+[8–15 items]
+
+## Punctuation Tics
+[list with quoted examples]
+
+## List Format
+[observation]
+
+## Emoji Policy
+[observation]
+
+## Code-Switching / Slang
+[observation with examples]
+
+## Tone Register
+[observation]
+
+## Anti-Patterns (NEVER do)
+- [pattern 1]
+- [pattern 2]
+...
+
+## Snippets to Echo (Optional)
+Short phrases/sentence shapes from the samples that you can echo (not copy) when drafting.
+```
+
+### 0.6 Calibration Mode — Confirm & Exit
+
+After writing the file:
+1. Show the user the top-3 most distinctive findings as a quick summary.
+2. Ask: «Похоже на ваш голос? Что добавить или поправить?» — edit the file based on feedback.
+3. Exit calibration mode. Tell the user the profile is saved and will be applied automatically on every future post.
+
+### 0.7 How Style Profile Is Applied in Later Steps
+
+- **Step 6 (Structure):** Match opening/closing shapes to the profile. Pull from "Snippets to Echo" if a shape fits.
+- **Step 7 (AI Slop Check):** Run both `voice-guidelines.md` AND `style-profile.md` Anti-Patterns. Profile wins on conflicts.
+- **Step 8 (Output):** Final pass — re-read the profile and check the draft against signature vocabulary, punctuation tics, and what the user never does.
 
 ## Step 1: Get the Idea
 
