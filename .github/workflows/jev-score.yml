@@ -1,0 +1,16 @@
+name: jev-score
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      # Тесты не ходят ни в Jev, ни в Claude: обе границы подменены, ключи не нужны.
+      - run: uv run --frozen pytest -q

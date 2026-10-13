@@ -26,3 +26,8 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+
+# Python (jev-score)
+__pycache__/
+.venv/
+.pytest_cache/
