@@ -1,0 +1,26 @@
+[project]
+name = "jev-score"
+version = "0.1.0"
+description = "Оценка черновика LinkedIn-поста по прошлым постам автора: признаки от Jev (TypeSafe), правки от Claude"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "openpyxl>=3.1",
+    "typesafe-sdk>=0.7.4",
+]
+
+[project.scripts]
+jev-score = "jev_score.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.11,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
